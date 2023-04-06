@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Product from '@/components/Product';
-import data from '@/utils/products.json';
 
 export default function Products() {
-  const [products, setProducts] = useState(data);
-
-  const handleUpdatePhotoLink = (id, url) => {
-    const clonedProducts = [...products];
-    clonedProducts.map(product => {
-      if (product.id === id) {
-        product.url = url;
-      }
-    });
-    setProducts(clonedProducts);
-  }
-
   return (
-    <div className='p-10 flex flex-wrap'>
+    <div className='p-8 md:p-10 flex flex-wrap'>
       {
-        products.map(product => {
-          return <div key={product.id} className='w-1/4 p-5'>
-            <Product {...product} onUpdate={handleUpdatePhotoLink} />
+        Array.from(Array(50)).map((item, index) => {
+          return <div key={index} className='w-full md:w-1/2 lg:w-1/3 2xl:w-1/4 p-0 pb-8 md:p-5'>
+            <Product key={index} index={index} />
           </div>
         })
       }
